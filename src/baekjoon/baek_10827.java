@@ -1,8 +1,10 @@
+package src.baekjoon;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
  
-public class Main {
+public class baek_10827 {
  
 	public static void main(String[] args) throws IOException {
  

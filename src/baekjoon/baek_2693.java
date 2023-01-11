@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Main {
+public class baek_2693 {
     
     public static void main(String[] args) throws IOException {
 

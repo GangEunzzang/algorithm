@@ -1,4 +1,6 @@
-public class Main {
+package src.baekjoon;
+
+public class baek_25083 {
 	public static void main(String[] args) {
 		String s = "         ,r'\"7\n" + 	
 				   "r`-_   ,'  ,/\n" + 		

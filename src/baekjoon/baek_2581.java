@@ -1,7 +1,9 @@
+package src.baekjoon;
+
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class Main {
+public class baek_2581 {
 
   public static boolean primeArr[];
   

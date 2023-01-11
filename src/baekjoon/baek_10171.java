@@ -1,4 +1,6 @@
-public class Main {
+package src.baekjoon;
+
+public class baek_10171 {
 	public static void main(String[] args) {
 		System.out.println("\\    /\\");
 		System.out.println(" )  ( ')");

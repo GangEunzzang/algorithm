@@ -1,6 +1,8 @@
+package src.baekjoon;
+
 import java.io.*;
 
-public class Main {
+public class baek_10798 {
 
   public static boolean primeArr[];
   
