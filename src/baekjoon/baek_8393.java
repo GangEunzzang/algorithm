@@ -10,6 +10,6 @@ public class baek_8393 {
 
         int N = sc.nextInt();
 
-        System.out.println((int) ((1+N) * (double)N/2));
+        System.out.println((int) (1+N) * (double)N/2);
     }
 }
