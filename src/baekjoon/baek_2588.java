@@ -1,7 +1,9 @@
+package src.baekjoon;
+
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class baek_2588 {
     
     public static void main(String[] args) throws IOException {
 
