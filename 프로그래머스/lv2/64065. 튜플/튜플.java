@@ -18,14 +18,9 @@ class Solution {
             }
         }
 
-        List<Map.Entry<Integer, Integer>> list_entries = map.entrySet().stream()
-                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
-                .collect(Collectors.toList());
-
-        int[] answer = list_entries.stream()
-                .mapToInt(Map.Entry::getKey)
-                .toArray();
-
-        return answer;
+        return map.entrySet().stream()
+            .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+            .mapToInt(Map.Entry::getKey)
+            .toArray();
     }
 }
