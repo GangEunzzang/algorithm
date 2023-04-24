@@ -46,28 +46,10 @@ public class Main {
         }
 
         bfs();
-
-        for (
-                int i = 0;
-                i < n; i++) {
-            for (int j = 0; j < m; j++) {
-
-                if (map[i][j] != 1) {
-                    continue;
-                }
-
-                if (Math.abs(startN - i) > 1 && Math.abs(startM - i) > 1) {
-                    map[i][j] = -1;
-                }
-
-            }
-        }
-
+        
         StringBuilder sb = new StringBuilder();
 
-        for (
-                int i = 0;
-                i < n; i++) {
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 sb.append(map[i][j]).append(" ");
             }
