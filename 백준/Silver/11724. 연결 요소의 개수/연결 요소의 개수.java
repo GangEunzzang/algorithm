@@ -2,66 +2,62 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
 public class Main {
 
-    static List<List<Integer>> graph = new ArrayList<>();
+    private static List<List<Integer>> graph = new ArrayList<>();
 
-    static int count = 0;
-    static boolean visited[];
+    private static boolean[] visited;
+    private static int N;
+    private static int M;
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
-        int N = Integer.parseInt(st.nextToken());
-        int M = Integer.parseInt(st.nextToken());
-
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
         visited = new boolean[N + 1];
 
         for (int i = 0; i <= N; i++) {
             graph.add(new ArrayList<>());
         }
 
+
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
-
-            int n1 = Integer.parseInt(st.nextToken());
-            int n2 = Integer.parseInt(st.nextToken());
-
-            graph.get(n1).add(n2);
-            graph.get(n2).add(n1);
-
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            graph.get(a).add(b);
+            graph.get(b).add(a);
         }
 
         int count = 0;
 
         for (int i = 1; i <= N; i++) {
             if (!visited[i]) {
-                dfs(i);
                 count++;
+                dfs(i);
             }
         }
 
         System.out.println(count);
+
     }
 
-    static void dfs(int index) {
+    public static void dfs(int x) {
 
-        if (visited[index]) {
-            return;
-        }
+        visited[x] = true;
 
-        visited[index] = true;
-
-        List<Integer> nodeList = graph.get(index);
-        for (Integer node : nodeList) {
-            if (!visited[node]) {
-                dfs(node);
+        List<Integer> list = graph.get(x);
+        for (Integer i : list) {
+            if (!visited[i]) {
+                dfs(i);
             }
         }
     }
 }
+
