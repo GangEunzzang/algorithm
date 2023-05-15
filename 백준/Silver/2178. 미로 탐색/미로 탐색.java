@@ -1,94 +1,82 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
 
-    static int graph[][];
+    private static int[][] map;
+    private static boolean[][] visited;
+    private static int N;
+    private static int M;
 
-    static boolean visited[][];
+    private static int[] moveX = {-1, 1, 0, 0};
+    private static int[] moveY = {0, 0, -1, 1};
 
-    static int N;
-    static int M;
-
-    static int[] dx = {0, 0, 1, -1};
-    static int[] dy = {1, -1, 0, 0};
-
+    private static int min = Integer.MAX_VALUE;
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-
-        graph = new int[N][M];
+        map = new int[N][M];
         visited = new boolean[N][M];
 
+
         for (int i = 0; i < N; i++) {
-
-            String input = br.readLine();
-
+            String s = br.readLine();
             for (int j = 0; j < M; j++) {
-                graph[i][j] = Character.getNumericValue(input.charAt(j));
+                map[i][j] = s.charAt(j) - '0';
             }
         }
 
-        bfs();
-        System.out.println(graph[N - 1][M - 1]);
-//        StringBuilder sb = new StringBuilder();
-//
-//        for (int i = 0; i < N; i++) {
-//
-//            sb.append("[");
-//            for (int j = 0; j < M; j++) {
-//                sb.append(graph[i][j]).append(" ");
-//            }
-//
-//            sb.append("]").append("\n");
-//        }
-//
-//        System.out.println(sb);
+       bfs();
+        System.out.println(min);
     }
 
-    static void bfs() {
+    private static void bfs() {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(new Node(0, 0, 0));
 
-        Queue<Integer> queueOfX = new LinkedList<>();
-        Queue<Integer> queueOfY = new LinkedList<>();
+        while (!queue.isEmpty()) {
+            Node node = queue.poll();
+            int count = node.count;
 
-        queueOfX.offer(0);
-        queueOfY.offer(0);
-
-        visited[0][0] = true;
-
-        while (!queueOfX.isEmpty()) {
-
-            Integer x = queueOfX.poll();
-            Integer y = queueOfY.poll();
+            if (node.x == N-1 && node.y == M-1) {
+                min = Math.min(min, node.count+1);
+                continue;
+            }
 
             for (int i = 0; i < 4; i++) {
-                int nx = x + dx[i];
-                int ny = y + dy[i];
+                int mx = moveX[i] + node.x;
+                int my = moveY[i] + node.y;
 
-                if (nx >= 0 && ny >= 0 && nx < N && ny < M) {
-                    if (graph[nx][ny] == 1 && !visited[nx][ny]) {
-                        queueOfX.offer(nx);
-                        queueOfY.offer(ny);
-
-                        visited[nx][ny] = true;
-                        graph[nx][ny] = graph[x][y] + 1;
-                    }
+                if (mx < 0 || my < 0 || mx >= N || my >= M || map[mx][my] == 0 || visited[mx][my]) {
+                    continue;
                 }
 
+                queue.add(new Node(mx, my, count + 1));
+                visited[mx][my] = true;
             }
 
         }
-
-
     }
+
+    static class Node {
+        public int x;
+        public int y;
+
+        public int count;
+
+        public Node(int x, int y, int count) {
+            this.x = x;
+            this.y = y;
+            this.count = count;
+        }
+    }
+
 }
