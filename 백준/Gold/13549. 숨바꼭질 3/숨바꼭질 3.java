@@ -7,19 +7,19 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    static int[] visited = new int[1000000];
-
-    static int N,K;
-
+    private static int K;
+    private static int[] visited = new int[100_001];
 
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-
+//        if (N > K) {
+//            System.out.println(N - K);
+//            return;
+//        }
 
         bfs(N);
 
@@ -27,21 +27,18 @@ public class Main {
 
     }
 
-    private static void bfs(int n) {
-
+    private static void bfs(int N) {
         Queue<Integer> q = new LinkedList<>();
-        q.add(n);
+        q.add(N);
 
-        visited[n] = 1;
+        visited[N] = 1;
 
         while (!q.isEmpty()) {
-
             Integer poll = q.poll();
 
             int up = poll + 1;
-            int down = poll -1;
+            int down = poll - 1;
             int jump = poll * 2;
-
 
             if (jump <= 100000 && visited[jump] == 0) {
                 q.add(jump);
@@ -57,16 +54,12 @@ public class Main {
                 q.add(up);
                 visited[up] = visited[poll] + 1;
             }
-
-
-
+            
             if (up == K || down == K || jump == K) {
                 break;
             }
 
         }
-
     }
-
-
 }
+
