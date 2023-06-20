@@ -10,28 +10,27 @@ class Solution {
     public String solution(int n, int t, int m, int p) {
 
         StringBuilder sb = new StringBuilder();
-        if(p == 1) sb.append(0);
 
         int idx = 0;
-        int talkCount = 2;
+        int talkCount = 1;
 
         while (sb.length() < t) {
-            idx++;
-            String value = getValue(n, idx);
+            String value = convert(n, idx);
+            
             for (int i = 0; i < value.length(); i++) {
-                char c = value.charAt(i);
-
-                if(talkCount++ == p && sb.length() < t) sb.append(c);
+                if(talkCount++ == p && sb.length() < t) sb.append(value.charAt(i));
                 if(talkCount > m) talkCount = 1;
             }
-
+            
+            idx++;
+            
         }
         return sb.toString();
     }
 
-    private String getValue(int n, int num) {
+    private String convert(int radix, int num) {
 
-        switch (n) {
+        switch (radix) {
             case 2 : return Integer.toString(num, 2);
             case 3 : return Integer.toString(num, 3);
             case 4 : return Integer.toString(num, 4);
