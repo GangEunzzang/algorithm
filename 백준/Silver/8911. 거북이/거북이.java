@@ -1,13 +1,11 @@
 import java.io.*;
 import java.util.*;
-
 public class Main {
 
     private static int nowX, nowY, maxX, maxY, minX, minY;
     private static int[] moveX = {1, 0, -1, 0};
     private static int[] moveY = {0, -1, 0, 1};
     private static int direction; // 0 = 동, 1 = 남, 2 = 서, 3 = 북
-
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -19,7 +17,7 @@ public class Main {
             for (char command : br.readLine().toCharArray()) {
                 moveByCommand(command);
             }
-            sb.append((Math.abs(minX) + Math.abs(maxX)) * (Math.abs(minY) + Math.abs(maxY)) + "\n");
+            sb.append((Math.abs(minX)+Math.abs(maxX))*(Math.abs(minY)+Math.abs(maxY))+"\n");
         }
 
         System.out.println(sb);
@@ -28,26 +26,24 @@ public class Main {
 
 
     private static void moveByCommand(char command) {
-        switch (command) {
-            case 'F':
-                nowX += moveX[direction];
-                nowY += moveY[direction];
-                break;
+        if (command == 'F') {
+            nowX += moveX[direction];
+            nowY += moveY[direction];
+        }
 
-            case 'B':
-                nowX -= moveX[direction];
-                nowY -= moveY[direction];
-                break;
+        if (command == 'B') {
+            nowX -= moveX[direction];
+            nowY -= moveY[direction];
+        }
 
-            case 'L':
-                if (direction == 0) direction = 3;
-                else direction--;
-                break;
+        if (command == 'L') {
+            if (direction == 0) direction = 3;
+            else direction--;
+        }
 
-            case 'R':
-                if (direction == 3) direction = 0;
-                else direction++;
-                break;
+        if (command == 'R') {
+            if (direction == 3) direction = 0;
+            else direction++;
         }
 
         minX = Math.min(minX, nowX);
@@ -58,12 +54,9 @@ public class Main {
     }
 
     private static void initVariable() {
-        nowX = 0;
-        nowY = 0;
-        maxX = 0;
-        maxY = 0;
-        minX = 0;
-        minY = 0;
+        nowX = 0; nowY = 0;
+        maxX = 0; maxY = 0;
+        minX = 0; minY = 0;
         direction = 0;
     }
 
