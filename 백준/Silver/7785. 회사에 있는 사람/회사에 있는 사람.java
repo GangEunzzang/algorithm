@@ -21,9 +21,12 @@ public class Main {
             if (prefix.equals("leave")) companyStayNameSet.remove(name);
         }
 
-        companyStayNameSet.stream()
+        String result = companyStayNameSet.stream()
                 .sorted(Comparator.reverseOrder())
-                .forEach(System.out::println);
+                .map(i -> i + "\n")
+                .collect(Collectors.joining());
+
+        System.out.println(result);
 
     }
 }
