@@ -28,7 +28,6 @@ public class Main {
         }
 
 
-        if (idx < s.length()) {
             String tmp = s.substring(idx, idx + 1);
             int num = Integer.parseInt(tmp);
 
@@ -37,16 +36,16 @@ public class Main {
                 dfs(idx + 1, new StringBuilder(sb).append(num).append(" "));
                 visited[num] = false;
             }
-        }
+
 
         if (idx < s.length() - 1) {
-            String tmp = s.substring(idx, idx + 2);
-            int num = Integer.parseInt(tmp);
+            String tmp2 = s.substring(idx, idx + 2);
+            int num2 = Integer.parseInt(tmp2);
 
-            if (isRangeCheck(tmp) && !visited[num]) {
-                visited[num] = true;
-                dfs(idx + 2, new StringBuilder(sb).append(num).append(" "));
-                visited[num] = false;
+            if (isRangeCheck(tmp2) && !visited[num2]) {
+                visited[num2] = true;
+                dfs(idx + 2, new StringBuilder(sb).append(num2).append(" "));
+                visited[num2] = false;
             }
         }
     }
