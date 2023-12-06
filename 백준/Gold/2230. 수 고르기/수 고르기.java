@@ -29,7 +29,7 @@ public class Main {
 
         int result = Integer.MAX_VALUE;
 
-        while (start < N) {
+        while (start < N && end < N) {
             int num = arr[start] - arr[end];
 
             if (num < M) {
@@ -37,11 +37,6 @@ public class Main {
                 continue;
             }
 
-            if (num == M) {
-                result = M;
-                break;
-            }
-            
             result = Math.min(result, num);
             end++;
 
