@@ -57,8 +57,8 @@ public class Main {
             List<Node> nxtList = graph.get(curNode.to);
 
             for (Node nxtNode : nxtList) {
-                if (minCost[nxtNode.to] > minCost[curNode.to] + nxtNode.cost) {
-                    minCost[nxtNode.to] = minCost[curNode.to] + nxtNode.cost;
+                if (minCost[nxtNode.to] > curNode.cost + nxtNode.cost) {
+                    minCost[nxtNode.to] = curNode.cost + nxtNode.cost;
                     q.add(new Node(nxtNode.to, minCost[nxtNode.to]));
                 }
             }
