@@ -26,13 +26,14 @@ public class Main {
             }
         }
 
-        dfs(0);
+        dfs(0, 0, 0);
 
         System.out.println(flag ? "YES" : "NO");
+
     }
 
 
-    static void dfs(int hurdleCount) {
+    static void dfs(int hurdleCount, int x, int y) {
         if (flag) return;
 
         if (hurdleCount == 3) {
@@ -40,14 +41,16 @@ public class Main {
             return;
         }
 
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+        for (int i = x; i < N; i++) {
+            for (int j = y; j < N; j++) {
                 if (arr[i][j] != 'X') continue;
                 arr[i][j] = 'O';
-                dfs(hurdleCount + 1);
+                dfs(hurdleCount + 1, i, j +1);
                 arr[i][j] = 'X';
             }
+            y = 0;
         }
+
     }
 
     static void check() {
