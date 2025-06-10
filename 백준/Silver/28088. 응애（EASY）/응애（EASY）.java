@@ -1,56 +1,46 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.*;
 
 public class Main {
-
+    static final int MAX_N = 200;
+    static int N, M, K;
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static StringBuilder sb = new StringBuilder();
-    static StringTokenizer st;
-    static int M,N,K;
+    static int[] arr = new int[MAX_N];
+    static int[] current = new int[MAX_N];
+    static int[] next = new int[MAX_N];
 
     public static void main(String[] args) throws IOException {
-        String s = br.readLine();
-        st = new StringTokenizer(s);
+        String[] tokens = br.readLine().split(" ");
+        N = Integer.parseInt(tokens[0]);
+        M = Integer.parseInt(tokens[1]);
+        K = Integer.parseInt(tokens[2]);
 
-        N = toInt(st.nextToken());
-        M = toInt(st.nextToken());
-        K = toInt(st.nextToken());
-
-        int[] arr = new int[N];
-
-        List<Integer> hiList = new ArrayList<>();
-
+        int currentSize = 0;
         for (int i = 0; i < M; i++) {
-            hiList.add( toInt(br.readLine()));
+            int v = Integer.parseInt(br.readLine());
+            current[currentSize++] = v;
         }
 
         while (K-- > 0) {
-            for (Integer i : hiList) {
-                int left = (i - 1 + N) % N;
-                int right = (i + 1) % N;
-                arr[left]++;
-                arr[right]++;
+            for (int i = 0; i < currentSize; i++) {
+                int idx = current[i];
+                arr[(idx - 1 + N) % N]++;
+                arr[(idx + 1) % N]++;
             }
 
-            hiList.clear();
-
+            int nextSize = 0;
             for (int i = 0; i < N; i++) {
                 if (arr[i] == 1) {
-                    hiList.add(i);
+                    next[nextSize++] = i;
                 }
-                arr[i] = 0;
+                arr[i] = 0; 
             }
+
+            int[] temp = current;
+            current = next;
+            next = temp;
+            currentSize = nextSize;
         }
 
-        System.out.println(hiList.size());
-    }
-
-
-    static int toInt(String s) {
-        return Integer.parseInt(s);
+        System.out.println(currentSize);
     }
 }
