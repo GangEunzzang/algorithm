@@ -11,6 +11,7 @@ public class Main {
     static StringBuilder sb = new StringBuilder();
     static StringTokenizer st;
     static int M,N,K;
+
     public static void main(String[] args) throws IOException {
         String s = br.readLine();
         st = new StringTokenizer(s);
@@ -22,11 +23,9 @@ public class Main {
         int[] arr = new int[N];
 
         List<Integer> hiList = new ArrayList<>();
-        boolean[] alreadySaid = new boolean[N];
 
         for (int i = 0; i < M; i++) {
-            int hi = toInt(br.readLine());
-            hiList.add(hi);
+            hiList.add( toInt(br.readLine()));
         }
 
         while (K-- > 0) {
