@@ -30,14 +30,13 @@ public class Main {
 
         while (K-- > 0) {
             for (Integer i : hiList) {
-
                 int left = (i - 1 + N) % N;
                 int right = (i + 1) % N;
                 arr[left]++;
                 arr[right]++;
             }
 
-            hiList = new ArrayList<>();
+            hiList.clear();
 
             for (int i = 0; i < N; i++) {
                 if (arr[i] == 1) {
